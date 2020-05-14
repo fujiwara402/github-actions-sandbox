@@ -13,6 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - run: make echo COMMIT_MESSAGE="${COMMIT_MESSAGE[0]}"
+    - run: FIRST_LINE=`echo "${COMMIT_MESSAGE}" | head -1` && make echo COMMIT_MESSAGE="$FIRST_LINE"
       env:
         COMMIT_MESSAGE: "${{ github.event.head_commit.message }}"
